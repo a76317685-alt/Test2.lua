@@ -85,8 +85,8 @@ end
 
 local function updateFrameWidth(frame, newWidth)
     currentWidth = math.clamp(newWidth, minWidth, maxWidth)
-    frame.Size = UDim2.new(0, currentWidth, 0, 380)
-    frame.Position = UDim2.new(0.5, -currentWidth/2, 0.5, -190)
+    frame.Size = UDim2.new(0, currentWidth, 0, 420)
+    frame.Position = UDim2.new(0.5, -currentWidth/2, 0.5, -210)
 end
 
 local function updateSavedList()
@@ -139,8 +139,8 @@ local function createMainUI()
     mainGui.Parent = player.PlayerGui
 
     local frame = Instance.new("Frame")
-    frame.Size = UDim2.new(0, 400, 0, 380)
-    frame.Position = UDim2.new(0.5, -200, 0.5, -190)
+    frame.Size = UDim2.new(0, 400, 0, 420)
+    frame.Position = UDim2.new(0.5, -200, 0.5, -210)
     frame.BackgroundColor3 = Color3.new(0.05, 0.1, 0.05)
     frame.BackgroundTransparency = 0.1
     frame.BorderSizePixel = 3
@@ -271,7 +271,7 @@ local function createMainUI()
         btn.Parent = tabBar
 
         local container = Instance.new("ScrollingFrame")
-        container.Size = UDim2.new(1, -10, 1, -70)
+        container.Size = UDim2.new(1, -10, 1, -95)
         container.Position = UDim2.new(0, 5, 0, 70)
         container.BackgroundTransparency = 1
         container.ScrollBarThickness = 5
@@ -293,9 +293,15 @@ local function createMainUI()
         end)
     end
 
+    -- ==================== EXECUTOR TAB ====================
+    local execFrame = Instance.new("Frame")
+    execFrame.Size = UDim2.new(1, 0, 1, 0)
+    execFrame.BackgroundTransparency = 1
+    execFrame.Parent = tabContainers["executor"]
+
     execBox = Instance.new("TextBox")
-    execBox.Size = UDim2.new(1, 0, 0, 140)
-    execBox.Position = UDim2.new(0, 0, 0, 0)
+    execBox.Size = UDim2.new(1, -10, 0, 140)
+    execBox.Position = UDim2.new(0, 5, 0, 0)
     execBox.Text = ""
     execBox.TextColor3 = Color3.new(1, 1, 1)
     execBox.BackgroundColor3 = Color3.new(0.02, 0.05, 0.02)
@@ -308,23 +314,24 @@ local function createMainUI()
     execBox.TextSize = 14
     execBox.TextXAlignment = Enum.TextXAlignment.Left
     execBox.TextYAlignment = Enum.TextYAlignment.Top
-    execBox.Parent = tabContainers["executor"]
+    execBox.Parent = execFrame
 
     local execBtn = Instance.new("TextButton")
-    execBtn.Size = UDim2.new(0.6, 0, 0, 30)
-    execBtn.Position = UDim2.new(0.2, 0, 0.8, 0)
-    execBtn.Text = "▶️ EXECUTE"
+    execBtn.Size = UDim2.new(0.7, 0, 0, 40)
+    execBtn.Position = UDim2.new(0.15, 0, 0, 148)
+    execBtn.Text = "▶️ EXEC SCRIPT"
     execBtn.TextColor3 = Color3.new(1, 1, 1)
     execBtn.BackgroundColor3 = Color3.new(0.1, 0.4, 0.1)
-    execBtn.BorderSizePixel = 2
+    execBtn.BorderSizePixel = 3
     execBtn.BorderColor3 = Color3.new(0, 1, 0)
     execBtn.Font = Enum.Font.GothamBold
-    execBtn.TextSize = 14
-    execBtn.Parent = tabContainers["executor"]
+    execBtn.TextSize = 20
+    execBtn.Parent = execFrame
     execBtn.MouseButton1Click:Connect(function()
         executeLua(execBox.Text)
     end)
 
+    -- ==================== SAVED SCRIPTS TAB ====================
     local saveNameBox = Instance.new("TextBox")
     saveNameBox.Size = UDim2.new(0.6, 0, 0, 25)
     saveNameBox.Position = UDim2.new(0, 0, 0, 0)
@@ -355,7 +362,7 @@ local function createMainUI()
     end)
 
     local savedList = Instance.new("ScrollingFrame")
-    savedList.Size = UDim2.new(1, 0, 0, 160)
+    savedList.Size = UDim2.new(1, 0, 0, 180)
     savedList.Position = UDim2.new(0, 0, 0, 30)
     savedList.BackgroundTransparency = 1
     savedList.ScrollBarThickness = 5
@@ -414,6 +421,7 @@ local function createMainUI()
         end)
     end
 
+    -- ==================== SEARCH TAB ====================
     local searchBox = Instance.new("TextBox")
     searchBox.Size = UDim2.new(0.6, 0, 0, 25)
     searchBox.Position = UDim2.new(0, 0, 0, 0)
@@ -445,7 +453,7 @@ local function createMainUI()
     end)
 
     local searchResults = Instance.new("ScrollingFrame")
-    searchResults.Size = UDim2.new(1, 0, 0, 160)
+    searchResults.Size = UDim2.new(1, 0, 0, 180)
     searchResults.Position = UDim2.new(0, 0, 0, 30)
     searchResults.BackgroundTransparency = 1
     searchResults.ScrollBarThickness = 5
@@ -510,6 +518,7 @@ local function createMainUI()
         end)
     end
 
+    -- ==================== SETTINGS TAB ====================
     local settingsLabel = Instance.new("TextLabel")
     settingsLabel.Size = UDim2.new(1, 0, 0, 30)
     settingsLabel.Text = "⚙ SETTINGS"
@@ -522,7 +531,7 @@ local function createMainUI()
     local credLabel = Instance.new("TextLabel")
     credLabel.Size = UDim2.new(1, 0, 0, 20)
     credLabel.Position = UDim2.new(0, 0, 0, 40)
-    credLabel.Text = "TUBERS93 EXECUTOR v13.0"
+    credLabel.Text = "TUBERS93 EXECUTOR v14.0"
     credLabel.TextColor3 = Color3.new(0, 1, 0)
     credLabel.BackgroundTransparency = 1
     credLabel.Font = Enum.Font.Gotham
